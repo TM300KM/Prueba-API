@@ -22,6 +22,7 @@ mvn -version
 Clonar el repositorio
 git clone https://github.com/tu-repositorio/users-api.git
 cd users-api
+
 Ejecutar el proyecto
 
 En la terminal ejecutar:
@@ -35,39 +36,48 @@ mvn spring-boot:run
 Si todo funciona correctamente verás:
 
 Started UsersApiApplication
+
 Tomcat started on port(s): 8080
 
 La API estará disponible en:
 
 http://localhost:8080
+
+
 Estructura del proyecto
 src
- └── main
-     ├── java/com/chakray/usersapi
-     │     ├── controller
-     │     │     UserController.java
-     │     ├── service
-     │     │     UserService.java
-     │     ├── model
-     │     │     User.java
-     │     └── UsersApiApplication.java
-     │
-     └── resources
-           application.properties
+ └main
+    java/com/chakray/usersapi
+    controller
+    UserController.java
+    service
+    UserService.java
+    model
+    User.java
+    UsersApiApplication.java
+    resources
+    application.properties
+
 Endpoints de la API
+
 Obtener todos los usuarios
+
 GET /users
 
 Ejemplo:
 
 http://localhost:8080/users
+
 Obtener usuario por ID
+
 GET /users/{id}
 
 Ejemplo:
 
 http://localhost:8080/users/1
+
 Crear usuario
+
 POST /users
 
 Body JSON:
@@ -79,7 +89,9 @@ Body JSON:
  "password": "1234",
  "taxId": "TAX001"
 }
+
 Actualizar usuario
+
 PUT /users/{id}
 
 Body:
@@ -91,12 +103,15 @@ Body:
  "password": "1234",
  "taxId": "TAX001"
 }
+
 Eliminar usuario
+
 DELETE /users/{id}
 
 Ejemplo:
 
 http://localhost:8080/users/1
+
 Pruebas con Postman
 
 Crear una colección llamada:
@@ -114,6 +129,7 @@ DELETE User
 Base URL:
 
 http://localhost:8080/users
+
 Tecnologías utilizadas
 
 Java 17
