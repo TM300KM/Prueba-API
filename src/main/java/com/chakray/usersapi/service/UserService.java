@@ -4,7 +4,6 @@ import com.chakray.usersapi.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -14,31 +13,55 @@ public class UserService {
 
     public UserService() {
 
-        users.add(new User(1L,"john@mail.com","John Doe","+52 722 222 333","1234","RFC1"));
-        users.add(new User(2L,"ana@mail.com","Ana Smith","+52 722 222 444","1234","RFC2"));
-        users.add(new User(3L,"mike@mail.com","Mike Brown","+52 722 222 555","1234","RFC3"));
+        users.add(new User(1L,"john@email.com","John Doe","111111","1234","TAX1"));
+        users.add(new User(2L,"ana@email.com","Ana Smith","222222","1234","TAX2"));
+        users.add(new User(3L,"mike@email.com","Mike Brown","333333","1234","TAX3"));
 
     }
 
     public List<User> getUsers(String sortedBy) {
-
-        if(sortedBy == null) return users;
-
-        return users.stream()
-                .sorted(getComparator(sortedBy))
-                .toList();
+        return users;
     }
 
-    private Comparator<User> getComparator(String field){
+    public User getUserById(Long id) {
 
-        return switch(field){
-            case "email" -> Comparator.comparing(User::getEmail);
-            case "name" -> Comparator.comparing(User::getName);
-            case "phone" -> Comparator.comparing(User::getPhone);
-            case "taxId" -> Comparator.comparing(User::getTaxId);
-            default -> Comparator.comparing(User::getId);
-        };
+        return users.stream()
+                .filter(user -> user.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
 
+    public User createUser(User user) {
+
+        user.setId((long) (users.size() + 1));
+        users.add(user);
+        return user;
+    }
+
+    public User updateUser(Long id, User updatedUser) {
+
+        for (User user : users) {
+
+            if (user.getId().equals(id)) {
+
+                user.setEmail(updatedUser.getEmail());
+                user.setName(updatedUser.getName());
+                user.setPhone(updatedUser.getPhone());
+                user.setPassword(updatedUser.getPassword());
+                user.setTaxId(updatedUser.getTaxId());
+
+                return user;
+            }
+        }
+
+        return null;
+    }
+
+    public String deleteUser(Long id) {
+
+        users.removeIf(user -> user.getId().equals(id));
+
+        return "User deleted successfully";
     }
 
 }

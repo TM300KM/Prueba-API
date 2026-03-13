@@ -1,0 +1,35 @@
+### GET USERS
+GET http://localhost:8080/users
+
+### GET USERS SORTED
+GET http://localhost:8080/users?sortedBy=email
+
+### CREATE USER
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+ "email": "ana@email.com",
+ "name": "Ana Lopez",
+ "phone": "5551234",
+ "password": "1234",
+ "taxId": "TAX999"
+}
+
+### GET USER BY ID
+GET http://localhost:8080/users/1
+
+### UPDATE USER
+PUT http://localhost:8080/users/1
+Content-Type: application/json
+
+{
+ "email": "updated@email.com",
+ "name": "Updated User",
+ "phone": "999999",
+ "password": "1234",
+ "taxId": "TAX1"
+}
+
+### DELETE USER
+DELETE http://localhost:8080/users/1
