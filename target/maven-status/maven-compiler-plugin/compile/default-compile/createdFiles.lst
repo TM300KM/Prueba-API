@@ -1,0 +1,3 @@
+com\chakray\usersapi\controller\AuthController.class
+com\chakray\usersapi\repository\UserRepository.class
+com\chakray\usersapi\model\Address.class
